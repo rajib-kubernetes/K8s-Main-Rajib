@@ -1,8 +1,8 @@
-## Kubernetes setup:
+# Kubernetes setup:
 
 To move our applications to Kubernetes, we would need to ensure that the individual needs of these applications are met. Certain things need to be in place. These are discussed next.
 
-### The database service:
+## The database service:
 In current setup we have a single database server running three different database software, i.e. MySQL Postgres, MongoDB. Currently all applications connect to this database server on desired ports. We can have a similar setup in a slightly different way on Kubernetes. We can have three individual database services running as three separate "StatefulSet". This helps the database software to save it's state in a disk volume acquired using a "PersistentVolumeClaimTemplate". So MySQL , Postgres and MongoDB can have their individual StatefulSets. 
 
 Lets talk about MySQL only. In Kubernetes terms, the MySQL instance needs:
@@ -18,7 +18,7 @@ Lets talk about MySQL only. In Kubernetes terms, the MySQL instance needs:
 
 **Note:** Personally, I dislike the idea of providing global access to my database instance through any web interface. Refer to `The best way to access your database instance in Kubernetes` in this article.
 
-### The ingress controller:
+## The ingress controller:
 We will be setting up our website to be accessible over the internet. For that to work, we need an **ingress controller** in the cluster. This ingress controller will be a service - defined as `type: LoadBalancer`. In the docker-compose setup, we have Traefik running as the ingress controller - sort of. In our Kubernetes setup, we will continue to use Traefik (1.7) as Ingress controller. 
 
 **Note:** The setup of Ingress Controller will also be a **one time activity** by the administrator.
@@ -43,7 +43,7 @@ Now we discuss the Kubernetes related needs of our applications. This is where d
 So, the first thing at hand is to setup a Kubernetes cluster, and then setup MySQL database service and Traefik Ingress Controller inside it.
 
 
-## Kubernetes setup plan:
+# Kubernetes setup plan:
 
 * Open DNS zone file in a separate browser tab, and let it remain open. We will come back to it later.
 * Deploy Traefik Ingress Controller, and create it's related service as `type:LoadBalancer` and obtain the public IP. Configure Traefik to use HTTPS using LetsEncrypt **Staging server**. You can use this guide: [https://github.com/KamranAzeem/kubernetes-katas/tree/master/ingress-traefik/https-letsencrypt-HTTP-Challenge](https://github.com/KamranAzeem/kubernetes-katas/tree/master/ingress-traefik/https-letsencrypt-HTTP-Challenge). It is best to keep the Traefik deployment and Traefik service definition files separate.
@@ -54,7 +54,7 @@ So, the first thing at hand is to setup a Kubernetes cluster, and then setup MyS
 
 **Note:** It is VERY important that you set TTL for the DNS zone of the related domain to a low value, say "5 minutes". This will ensure that when you change DNS records, the change is propagated quickly across DNS servers around the world.
 
-## Kubernetes setup:
+# Kubernetes setup:
 
 I have setup a Kubernetes cluster on GCP/GKE. I have also ensured that I can access it using kubectl on my local work computer:
 

@@ -1,7 +1,6 @@
-## Migration plan:
-To be able to deploy our wordpress application to kubernetes, we would need to perform the following steps, in order:
+# Migration plan:
+## To be able to deploy our wordpress application to kubernetes, we would need to perform the following steps, in order:
 
-**Note:** It is VERY important that you set TTL for the DNS zone of the related domain to a low value, say "5 minutes". This will ensure that when you change DNS records, the change is propagated quickly across DNS servers around the world.
 
 
 * Stop the related wordpress docker-compose application on the docker server. 

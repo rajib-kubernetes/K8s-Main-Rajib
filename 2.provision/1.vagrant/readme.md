@@ -25,3 +25,20 @@ kubeadm-node1   NotReady   master   12m   v1.12.2
 
 #  scp commond 
 scp root@172.16.16.100:/etc/kubernetes/admin.conf ~/.kube/config
+
+
+#  Kubernetes common commond
+```
+kubectl get cs
+kubectl get nodes
+kubectl get namespaces
+kubectl get pod -n <namespace>
+kubectl get
+kubectl get
+kubectl get
+kubectl get
+
+
+```
+
+

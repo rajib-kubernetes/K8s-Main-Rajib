@@ -49,6 +49,9 @@ systemctl restart kubelet.service
 
 
 #  Kubernetes common commond
+
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
 ```
 
 

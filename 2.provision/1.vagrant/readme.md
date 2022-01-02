@@ -26,14 +26,22 @@ kubeadm-node1   NotReady   master   12m   v1.12.2
 #  scp commond 
 scp root@172.16.16.100:/etc/kubernetes/admin.conf ~/.kube/config
 
+
+## Solution:
+
+### Modify the following files on all master nodes:
 ```
-It looks like you then you can remove the line "- --port=0" from
-
-/etc/kubernetes/manifests/kube-scheduler.yaml 
-
-/etc/kubernetes/manifests/kube-controller-manager.yaml
-
-next restart kubectl and test it again.
+$ sudo vi /etc/kubernetes/manifests/kube-scheduler.yaml
+```
+Clear the line (spec->containers->command) containing this phrase: - --port=0
+```
+$ sudo vi /etc/kubernetes/manifests/kube-controller-manager.yaml
+```
+Clear the line (spec->containers->command) containing this phrase: - --port=0
+```
+$ sudo systemctl restart kubelet.service
+```
+```
 systemctl restart kubelet.service
 
 ```

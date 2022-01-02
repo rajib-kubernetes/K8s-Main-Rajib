@@ -24,7 +24,10 @@ kubeadm-node1   NotReady   master   12m   v1.12.2
 # At least the cluster's components are ok!
 
 #  scp commond 
-scp root@172.16.16.100:/etc/kubernetes/admin.conf ~/.kube/config
+
+sudo scp root@172.16.16.100:/etc/kubernetes/admin.conf ~/.kube/config
+
+sudo scp root@172.16.16.100:/etc/kubernetes/admin.conf ~/.kube/config
 
 
 ## Solution:

@@ -60,10 +60,10 @@ kubectl get sc managed-nfs-storage -o yaml
 
 
 
-#2.setup mtllb 
+# 2.setup mtllb 
 
 
-#3.setup treaffq 
+# 3.setup traefik 
 
 
 

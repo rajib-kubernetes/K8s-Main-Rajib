@@ -52,16 +52,74 @@ kubectl get sc managed-nfs-storage -o yaml
 ```
 
 
+# 2. Setup Metallb
 
+```
+kubectl create deploy nginx --image nginx
+kubectl expose deploy nginx --port 80 --type=LoadBalancer
+kubectl get svc nginx
+```
+### sipcalc install (Sipcalc is an ip subnet calculator for finding network range)
 
+```
+sudo apt-get install -y sipcalc
+ip a s
+    (vboxnet0:inet 172.16.16.1/24)
+sipcalc
+sipcalc 172.16.16.1/24
+```
+### Network range		- 172.16.16.0 - 172.16.16.255
 
+## Installation By Manifest
 
+```
+k -n kube-system get cm
+k -n kube-system describe cm kube-proxy | less
+```
 
+### Manifest file link chack commund
+```
+curl -s https://raw.githubusercontent.com/metallb/metallb/v0.11.0/manifests/namespace.yaml | less
+curl -s https://raw.githubusercontent.com/metallb/metallb/v0.11.0/manifests/metallb.yaml | less
+```
+### To install MetalLB, apply the manifest:
 
+```
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.11.0/manifests/namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.11.0/manifests/metallb.yaml
 
+kg ns
+k -n metallb-system get all
+```
+## Layer 2 Configuration
 
-# 2.setup mtllb 
+vim metallb.yaml
 
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 172.16.16.240-172.16.16.250
+```
+
+kubectl create -f metallb.yaml
+
+## 2ed time test
+
+```
+kubectl create deploy nginx2 --image nginx
+kubectl expose deploy nginx2 --port 80 --type=LoadBalancer
+kubectl get svc nginx2
+
+```
 
 # 3.setup traefik 
 

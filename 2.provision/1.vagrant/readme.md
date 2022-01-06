@@ -11,16 +11,10 @@
 
 ### Check if you can talk to the cluster/API server:
 ```
-[student@kubeadm-node1 ~]$ kubectl get componentstatuses
-NAME                 STATUS    MESSAGE              ERROR
-scheduler            Healthy   ok                   
-controller-manager   Healthy   ok                   
-etcd-0               Healthy   {"health": "true"}   
+[student@kubeadm-node1 ~]$ kubectl get componentstatuses   
 [student@kubeadm-node1 ~]$ kubectl get nodes
-NAME            STATUS     ROLES    AGE   VERSION
-kubeadm-node1   NotReady   master   12m   v1.12.2
+
 ```
-# At least the cluster's components are ok!
 #  scp commond 
 ```
 $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -31,6 +25,14 @@ mkdir -p $HOME/.kube
 sudo ssh-keygen -f "/root/.ssh/known_hosts" -R "kmaster.example.com"
 sudo scp root@kmaster.example.com:/etc/kubernetes/admin.conf ~/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl cluster-info
+kubectl version
+
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+
 ```
 
 ## Solution:

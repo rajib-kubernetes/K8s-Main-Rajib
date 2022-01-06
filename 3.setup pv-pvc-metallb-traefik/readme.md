@@ -5,7 +5,7 @@
 ### server ip: 192.168.1.100
 ```
 sudo apt install nfs-kernel-server
-sudo mkdir -p srv/nfs/kubedata
+sudo mkdir -p /srv/nfs/kubedata
 sudo chown -R nobody:nogroup /srv/nfs/kubedata
 sudo chmod 777 /srv/nfs/kubedata
 

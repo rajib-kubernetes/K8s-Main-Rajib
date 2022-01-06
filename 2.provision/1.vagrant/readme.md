@@ -20,20 +20,17 @@ etcd-0               Healthy   {"health": "true"}
 NAME            STATUS     ROLES    AGE   VERSION
 kubeadm-node1   NotReady   master   12m   v1.12.2
 ```
-
 # At least the cluster's components are ok!
-
 #  scp commond 
-
 ```
+$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
 sudo scp root@172.16.16.100:/etc/kubernetes/admin.conf ~/.kube/config
 
-$ mkdir -p $HOME/.kube
-$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+mkdir -p $HOME/.kube
+sudo ssh-keygen -f "/root/.ssh/known_hosts" -R "kmaster.example.com"
 sudo scp root@kmaster.example.com:/etc/kubernetes/admin.conf ~/.kube/config
-$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 ## Solution:

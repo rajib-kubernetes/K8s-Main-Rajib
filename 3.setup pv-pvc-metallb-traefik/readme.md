@@ -20,7 +20,6 @@ sudo systemctl enable nfs-kernel-server
 sudo systemctl restart nfs-kernel-server
 sudo systemctl status nfs-kernel-server
 ```
-
 ## nfs clinte setup for checking
 
 ```
@@ -28,7 +27,6 @@ sudo apt install nfs-common
 mount -t nfs 192.168.1.100:/srv/nfs/kubedata /mnt
 mount | grep kubedata
 umount /mnt
-
 ```
 
 # k8s deployment persistent volume setup to existing cluster
@@ -44,14 +42,8 @@ kubectl get pods
 kubectl get pv,pvc
 kubectl get sc
 
-kubectl delete -f 2.class
-    #edit last line
-
 kubectl get sc managed-nfs-storage -o yaml
-
 ```
-
-
 # 2. Setup Metallb
 
 ```
@@ -73,8 +65,8 @@ sipcalc 172.16.16.1/24
 ## Installation By Manifest
 
 ```
-k -n kube-system get cm
-k -n kube-system describe cm kube-proxy | less
+kubectl -n kube-system get cm
+kubectl -n kube-system describe cm kube-proxy | less
 ```
 
 ### Manifest file link chack commund
@@ -88,8 +80,8 @@ curl -s https://raw.githubusercontent.com/metallb/metallb/v0.11.0/manifests/meta
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.11.0/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.11.0/manifests/metallb.yaml
 
-kg ns
-k -n metallb-system get all
+kubectl get ns
+kubectl -n metallb-system get all
 ```
 ## Layer 2 Configuration
 
@@ -109,7 +101,6 @@ data:
       addresses:
       - 172.16.16.240-172.16.16.250
 ```
-
 kubectl create -f metallb.yaml
 
 ## 2ed time test
@@ -120,8 +111,44 @@ kubectl expose deploy nginx2 --port 80 --type=LoadBalancer
 kubectl get svc nginx2
 
 ```
+# 3. helm
+https://github.com/helm/helm/releases
+tar -zxvf helm-vxxx-xxxx-xxxx.tar.gz
+mv linux-amd64/helm /usr/local/bin/helm
+helm version
 
-# 3.setup traefik 
+# 4.Setup traefik 
+
+```
+helm show values traefik/traefik > /home/rajib/play/K8s-main/2.provision/1.vagrant/k8s-treafik/1.treafik-values.yaml
+helm install traefik traefik/traefik --values /home/rajib/play/K8s-main/2.provision/1.vagrant/k8s-treafik/1.treafik-values.yaml -n traefik --create-namespace
+helm install traefik traefik/traefik
+
+kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000
+kubectl port-forward traefik3-667fc777ff-xp7g6 9000:9000
+
+kubectl get pods --all-namespaces
+kubectl get all --all-namespaces
+````
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

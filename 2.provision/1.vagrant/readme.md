@@ -26,12 +26,18 @@ sudo ssh-keygen -f "/root/.ssh/known_hosts" -R "kmaster.example.com"
 sudo scp root@kmaster.example.com:/etc/kubernetes/admin.conf ~/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-kubectl cluster-info
-kubectl version
-
 curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
+
+kubectl cluster-info
+kubectl version
+
+cat >>/etc/hosts<<EOF
+172.16.16.100   kmaster.example.com     kmaster
+172.16.16.101   kworker1.example.com    kworker1
+172.16.16.102   kworker2.example.com    kworker2
+EOF
 
 ```
 

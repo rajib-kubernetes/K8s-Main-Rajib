@@ -149,6 +149,7 @@ kubectl port-forward traefik3-667fc777ff-xp7g6 9000:9000
 kubectl get pods --all-namespaces
 kubectl get all --all-namespaces
 
+kubectl get all -n traefik
 
 
 ````

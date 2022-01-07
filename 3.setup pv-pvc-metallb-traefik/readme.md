@@ -164,6 +164,8 @@ kubectl get all --all-namespaces
 
 kubectl get all -n traefik
 
+kubectl describe deployment traefik
+
 
 ````
 

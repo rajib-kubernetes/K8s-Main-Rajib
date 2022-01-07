@@ -20,7 +20,7 @@
 $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
 sudo scp root@172.16.16.100:/etc/kubernetes/admin.conf ~/.kube/config
-sudo rm -rf -p $HOME/.kube
+sudo rm -rf $HOME/.kube
 sudo mkdir -p $HOME/.kube
 sudo ssh-keygen -f "/root/.ssh/known_hosts" -R "kmaster.example.com"
 sudo scp root@kmaster.example.com:/etc/kubernetes/admin.conf ~/.kube/config

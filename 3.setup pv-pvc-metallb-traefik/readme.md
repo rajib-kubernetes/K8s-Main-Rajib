@@ -30,6 +30,19 @@ umount /mnt
 ```
 
 # k8s deployment persistent volume setup to existing cluster
+## by Helm chart
+
+helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
+   --set nfs.server=192.168.1.100 \
+   --set nfs.path=/srv/nfs/kubedata 
+
+kubectl get pods
+kubectl get pv,pvc
+kubectl get sc
+
+k get sc nfs-client -o yaml 
+
 
 ```
 kubectl create -f 1.rbac.yaml
@@ -120,8 +133,14 @@ helm version
 # 4.Setup traefik 
 
 ```
+
+helm version
+helm repo list 
+helm repo update
+
+
 helm show values traefik/traefik > /home/rajib/play/K8s-main/2.provision/1.vagrant/k8s-treafik/1.treafik-values.yaml
-helm install traefik traefik/traefik --values /home/rajib/play/K8s-main/2.provision/1.vagrant/k8s-treafik/1.treafik-values.yaml -n traefik --create-namespace
+helm install traefik3 traefik/traefik --values /home/rajib/play/K8s-main/2.provision/1.vagrant/k8s-treafik/1.treafik-values.yaml -n traefik --create-namespace
 helm install traefik traefik/traefik
 
 kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000
@@ -129,6 +148,9 @@ kubectl port-forward traefik3-667fc777ff-xp7g6 9000:9000
 
 kubectl get pods --all-namespaces
 kubectl get all --all-namespaces
+
+
+
 ````
 
 

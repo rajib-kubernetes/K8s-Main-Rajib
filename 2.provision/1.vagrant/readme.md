@@ -20,14 +20,14 @@
 $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
 sudo scp root@172.16.16.100:/etc/kubernetes/admin.conf ~/.kube/config
-
-mkdir -p $HOME/.kube
+sudo rm -rf -p $HOME/.kube
+sudo mkdir -p $HOME/.kube
 sudo ssh-keygen -f "/root/.ssh/known_hosts" -R "kmaster.example.com"
 sudo scp root@kmaster.example.com:/etc/kubernetes/admin.conf ~/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-chmod +x ./kubectl
+sudo chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 
 kubectl cluster-info

@@ -50,6 +50,8 @@ kubectl create -f 2.class.yaml
 kubectl create -f 3.deployment.yaml
 kubectl create -f 4.test-claim.yaml
 kubectl create -f 5.test-pod.yaml
+/home/rajib/play/K8s-main/2.provision/1.vagrant/k8s-nfs/4.test-claim.yaml
+
 
 kubectl get pods
 kubectl get pv,pvc
@@ -130,6 +132,14 @@ tar -zxvf helm-vxxx-xxxx-xxxx.tar.gz
 mv linux-amd64/helm /usr/local/bin/helm
 helm version
 
+helm version
+helm repo list 
+helm repo update
+helm search repo traefik
+helm show values traefik/traefik > /home/rajib/treafik-values.yaml
+kubectl delete deploy traefik5 -n traefik
+kubectl delete svc traefik5 -n traefik
+
 # 4.Setup traefik 
 
 ```
@@ -137,10 +147,10 @@ helm version
 helm version
 helm repo list 
 helm repo update
-
+helm search repo traefik
 
 helm show values traefik/traefik > /home/rajib/play/K8s-main/2.provision/1.vagrant/k8s-treafik/1.treafik-values.yaml
-helm install traefik3 traefik/traefik --values /home/rajib/play/K8s-main/2.provision/1.vagrant/k8s-treafik/1.treafik-values.yaml -n traefik --create-namespace
+helm install traefik traefik/traefik --values /home/rajib/treafik-values.yaml -n traefik --create-namespace
 helm install traefik traefik/traefik
 
 kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000

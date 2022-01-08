@@ -47,6 +47,8 @@ EOF
 ### Modify the following files on all master nodes:
 
 ```
+ssh root@172.16.16.100
+kubeadmin
 $ sudo vi /etc/kubernetes/manifests/kube-scheduler.yaml
 Clear the line (spec->containers->command) containing this phrase: - --port=0
 $ sudo vi /etc/kubernetes/manifests/kube-controller-manager.yaml

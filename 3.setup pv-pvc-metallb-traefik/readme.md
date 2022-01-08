@@ -33,18 +33,19 @@ umount /mnt
 
 # k8s deployment persistent volume setup to existing cluster
 ## by Helm chart
-
+```
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
 helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
    --set nfs.server=192.168.1.100 \
-   --set nfs.path=/srv/nfs/kubedata 
+   --set nfs.path=/srv/nfs/kubedata \
+   -n oparation --create-namespace
 
 kubectl get pods
 kubectl get pv,pvc
 kubectl get sc
 
 k get sc nfs-client -o yaml 
-
+```
 
 ```
 kubectl create -f 1.rbac.yaml

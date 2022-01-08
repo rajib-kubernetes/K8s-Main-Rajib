@@ -23,7 +23,7 @@ sudo systemctl status nfs-kernel-server
 ## nfs clinte setup for checking
 
 ```
-sudo ssh root:172.16.16.101
+sudo ssh root@172.16.16.101
 kubeadmin
 sudo apt install nfs-common -y
 mount -t nfs 192.168.1.100:/srv/nfs/kubedata /mnt
@@ -152,14 +152,20 @@ helm repo list
 helm repo update
 helm search repo traefik
 
+kubectl patch storageclass nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
 helm show values traefik/traefik > /home/rajib/play/K8s-main/2.provision/1.vagrant/k8s-treafik/1.treafik-values.yaml
+                        or
 helm show values traefik/traefik > /home/rajib/treafik-values.yaml
+
 helm install traefik traefik/traefik --values /home/rajib/treafik-values.yaml -n traefik --create-namespace
+                        or
 helm upgrade traefik traefik/traefik --values /home/rajib/treafik-values.yaml
+
 helm uninstall traefik -n traefik
 helm install traefik traefik/traefik
 
-kubectl patch storageclass nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
 kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000
 kubectl port-forward traefik3-667fc777ff-xp7g6 9000:9000
 
@@ -167,6 +173,7 @@ kubectl get pods --all-namespaces
 kubectl get all --all-namespaces
 
 kubectl get all -n traefik
+kubectl get pod -n traefik
 
 kubectl describe deployment traefik
 

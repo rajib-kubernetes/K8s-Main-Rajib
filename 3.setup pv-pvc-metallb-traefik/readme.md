@@ -159,14 +159,10 @@ helm show values traefik/traefik > /home/rajib/play/K8s-main/2.provision/1.vagra
 helm show values traefik/traefik > /home/rajib/treafik-values.yaml
 
 helm install traefik traefik/traefik --values /home/rajib/treafik-values.yaml -n traefik --create-namespace
-                        or
-helm upgrade traefik traefik/traefik --values /home/rajib/treafik-values.yaml
-
 helm uninstall traefik -n traefik
-helm install traefik traefik/traefik
-
 
 kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000
+
 kubectl port-forward traefik3-667fc777ff-xp7g6 9000:9000
 
 kubectl get pods --all-namespaces

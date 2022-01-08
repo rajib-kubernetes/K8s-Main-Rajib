@@ -23,6 +23,8 @@ sudo systemctl status nfs-kernel-server
 ## nfs clinte setup for checking
 
 ```
+sudo ssh root:172.16.16.101
+kubeadmin
 sudo apt install nfs-common
 mount -t nfs 192.168.1.100:/srv/nfs/kubedata /mnt
 mount | grep kubedata

@@ -171,6 +171,12 @@ kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traef
 kubectl port-forward traefik3-667fc777ff-xp7g6 9000:9000
 
 kubectl get pods --all-namespaces
+kubectl get svc --all-namespaces
+kubectl get deploy --all-namespaces
+kubectl get pv --all-namespaces
+kubectl get pvc --all-namespaces
+
+
 kubectl get all --all-namespaces
 
 kubectl get all -n traefik

@@ -32,6 +32,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 
 kubectl cluster-info
 kubectl version
+kubectl get no
 
 cat >>/etc/hosts<<EOF
 172.16.16.100   kmaster.example.com     kmaster

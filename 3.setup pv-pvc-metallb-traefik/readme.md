@@ -148,9 +148,11 @@ kubectl delete svc traefik5 -n traefik
 
 ```
 helm version
-helm repo list 
-helm repo update
 helm search repo traefik
+helm repo update
+helm repo list
+helm list 
+helm list traefik
 
 kubectl patch storageclass nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
@@ -159,6 +161,9 @@ helm show values traefik/traefik > /home/rajib/play/K8s-main/2.provision/1.vagra
 helm show values traefik/traefik > /home/rajib/treafik-values.yaml
 
 helm install traefik traefik/traefik --values /home/rajib/treafik-values.yaml -n traefik --create-namespace
+
+helm upgrade traefik traefik/traefik --values /home/rajib/treafik-values.yaml -n traefik
+
 helm uninstall traefik -n traefik
 
 kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000

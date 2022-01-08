@@ -4,7 +4,7 @@
 ## setup nfs server 
 ### server ip: 192.168.1.100
 ```
-sudo apt install nfs-kernel-server
+sudo apt install nfs-kernel-server -y
 sudo mkdir -p /srv/nfs/kubedata
 sudo chown -R nobody:nogroup /srv/nfs/kubedata
 sudo chmod 777 /srv/nfs/kubedata
@@ -25,7 +25,7 @@ sudo systemctl status nfs-kernel-server
 ```
 sudo ssh root:172.16.16.101
 kubeadmin
-sudo apt install nfs-common
+sudo apt install nfs-common -y
 mount -t nfs 192.168.1.100:/srv/nfs/kubedata /mnt
 mount | grep kubedata
 umount /mnt

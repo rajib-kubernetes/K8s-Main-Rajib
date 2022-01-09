@@ -179,24 +179,55 @@ kubectl get pvc --all-namespaces
 
 kubectl get all --all-namespaces
 
-kubectl get all -n traefik
-kubectl get pod -n traefik
+kubectl -n traefik get all
+kubectl -n traefik get pod
+kubectl -n traefik get svc
+kubectl -n traefik get IngressRoute
 
 kubectl describe deployment traefik
 
 
-````
+```
+## 5.Basic IngressRoute
+
+4.IngressRoute-1.yaml
+
+k create -f /home/rajib/4.IngressRoute-1.yaml
+
+k delete -f /home/rajib/4.IngressRoute-1.yaml
+
+kubectl -n traefik get all
+kubectl -n traefik get pod
+kubectl -n traefik get svc
+kubectl -n traefik get IngressRoute
 
 
-## 5.Setup traefik dashboard with basic-auth (dashboard , Middleware(basic-auth),htpasswd )
+```
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nginx
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`nginx.example.com`)
+      kind: Rule
+      services:
+        - name: nginx
+          port: 80
+
+
+```
+## 6.Setup traefik dashboard with basic-auth (dashboard , Middleware(basic-auth),htpasswd )
 ### 
 
 kubectl create -f /home/rajib/1.traefik-db.yaml
 kubectl delete -f /home/rajib/1.traefik-db.yaml
 
-
-kubectl get all -n traefik
-kubectl get pod -n traefik
+kubectl -n traefik get all
+kubectl -n traefik get pod
 
 
 ```

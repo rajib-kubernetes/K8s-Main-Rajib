@@ -188,10 +188,53 @@ kubectl describe deployment traefik
 ````
 
 
+## 4.Setup traefik dashboard with basic-auth (dashboard , Middleware(basic-auth),htpasswd )
+
+
+```
+# dashboard.yaml
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`traefix.example.com`)
+      kind: Rule
+      middlewares :
+        - name: nginx-basic-auth
+      services:
+        - name: api@internal
+          kind: TraefikService
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: nginx-basic-auth
+spec:
+  basicAuth:
+    secret: authsecret
+
+---
+# Example:
+#   htpasswd -nb venkat hello | base64
+#   dmVua2F0OiRhcHIxJE52L0lPTDZlJDRqdFlwckpjUk1aWU5aeG45M0xCNi8KCg==
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: authsecret
+
+data:
+  users: |
+    cmFqaWI6JGFwcjEkYldHZGhtRE4kNGxWZEhrYlBKRkNsZmVKS0toMEYxMAoK
 
 
 
-
+```
 
 
 

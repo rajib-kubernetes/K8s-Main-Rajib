@@ -188,7 +188,15 @@ kubectl describe deployment traefik
 ````
 
 
-## 4.Setup traefik dashboard with basic-auth (dashboard , Middleware(basic-auth),htpasswd )
+## 5.Setup traefik dashboard with basic-auth (dashboard , Middleware(basic-auth),htpasswd )
+### 
+
+kubectl create -f /home/rajib/1.traefik-db.yaml
+kubectl delete -f /home/rajib/1.traefik-db.yaml
+
+
+kubectl get all -n traefik
+kubectl get pod -n traefik
 
 
 ```

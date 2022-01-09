@@ -1,5 +1,8 @@
 
-#1. setup persistent volume (storageClass,pv,vpc)
+# Setup NFS, Metallb, Helm, Traefik (IngressRoute Middleware Dashboard Basic-auth)
+
+
+## 1. setup persistent volume (NFS,pv,vpc)
 
 ## setup nfs server 
 ### server ip: 192.168.1.100
@@ -31,7 +34,7 @@ mount | grep kubedata
 umount /mnt
 ```
 
-# k8s deployment persistent volume setup to existing cluster
+# NFS Persistent volume setup to existing cluster
 ## by Helm chart
 ```
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
@@ -40,12 +43,20 @@ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs
    --set nfs.path=/srv/nfs/kubedata \
    -n oparation --create-namespace
 
+kubectl create -f 4.test-claim.yaml
+kubectl create -f 5.test-pod.yaml
+
+kubectl get sc
 kubectl get pods
 kubectl get pv,pvc
 kubectl get sc
 
 k get sc nfs-client -o yaml 
+
+
 ```
+
+## by normal way
 
 ```
 kubectl create -f 1.rbac.yaml
@@ -53,6 +64,7 @@ kubectl create -f 2.class.yaml
 kubectl create -f 3.deployment.yaml
 kubectl create -f 4.test-claim.yaml
 kubectl create -f 5.test-pod.yaml
+
 /home/rajib/play/K8s-main/2.provision/1.vagrant/k8s-nfs/4.test-claim.yaml
 
 kubectl get pods
@@ -67,6 +79,7 @@ kubectl get sc managed-nfs-storage -o yaml
 kubectl create deploy nginx --image nginx
 kubectl expose deploy nginx --port 80 --type=LoadBalancer
 kubectl get svc nginx
+kubectl delete deploy nginx
 ```
 ### sipcalc install (Sipcalc is an ip subnet calculator for finding network range)
 
@@ -134,15 +147,12 @@ kubectl get svc nginx2
 https://github.com/helm/helm/releases
 tar -zxvf helm-vxxx-xxxx-xxxx.tar.gz
 mv linux-amd64/helm /usr/local/bin/helm
-helm version
 
 helm version
-helm repo list 
+helm list 
 helm repo update
 helm search repo traefik
-helm show values traefik/traefik > /home/rajib/treafik-values.yaml
-kubectl delete deploy traefik5 -n traefik
-kubectl delete svc traefik5 -n traefik
+
 ````
 # 4.Setup traefik 
 
@@ -170,12 +180,15 @@ kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traef
 
 kubectl port-forward traefik3-667fc777ff-xp7g6 9000:9000
 
+
+kubectl delete deploy traefik5 -n traefik
+kubectl delete svc traefik5 -n traefik
+
 kubectl get pods --all-namespaces
 kubectl get svc --all-namespaces
 kubectl get deploy --all-namespaces
 kubectl get pv --all-namespaces
 kubectl get pvc --all-namespaces
-
 
 kubectl get all --all-namespaces
 
@@ -270,8 +283,6 @@ metadata:
 data:
   users: |
     cmFqaWI6JGFwcjEkYldHZGhtRE4kNGxWZEhrYlBKRkNsZmVKS0toMEYxMAoK
-
-
 
 ```
 

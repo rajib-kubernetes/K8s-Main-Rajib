@@ -7,8 +7,12 @@
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 ```
+kubectl get no
 kubectl get cs
-kubectl get nodes
+kubectl version --short
+kubectl version
+kubectl cluster-info
+
 kubectl get namespaces
 kubectl get pods
 kubectl get pods -o wide

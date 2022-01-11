@@ -1,7 +1,9 @@
 ### Rancher-
-### DashboardUI- 
+### Dashboard-UI- 
 ### Pometheus&Grafana- 
-### EFK stack(lasticsearch, FluentBit & Kibana)-
+### EFK stack(Elasticsearch, FluentBit & Kibana)-
+
+
 ### WeaveScope-
 
 https://www.weave.works/docs/scope/latest/installing/#orchestrators
@@ -84,7 +86,8 @@ k9s
 
 ```
 
-### Kontena Lens 
+### k8s lens  
+
 ### Kail - Easy tool to view logs 
 
 

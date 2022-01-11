@@ -10,6 +10,8 @@ https://www.weave.works/docs/scope/latest/installing/#orchestrators
 kubectl apply -f "https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl version | base64 | tr -d '\n')" --dry-run
 kubectl apply -f "https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
+kubectl version --short
+
 kubectl get ns
 kubectl -n weave get all
 kubectl -n weave get pod
@@ -53,6 +55,34 @@ kubectl -n weave get svc
 ```
 ### K9sTerminalDashboard-
 
+```
+kubectl version --short
+
+https://github.com/derailed/k9s/releases
+https://github.com/derailed/k9s/releases/download/v0.25.18/k9s_Linux_x86_64.tar.gz
+
+cd /usr/local/bin
+sudo wget https://github.com/derailed/k9s/releases/download/v0.25.18/k9s_Linux_x86_64.tar.gz
+
+ls
+sudo tar zxf k9s_Linux_x86_64.tar.gz
+ls
+
+which k9s
+
+ls -l /usr/local/bin/k9s
+
+### if not executable
+
+sudo chmod +x /usr/local/bin/k9s
+
+### config file location
+.k9s/config.yml
+
+k9s
+
+
+```
 
 ### Kontena Lens 
 ### Kail - Easy tool to view logs 

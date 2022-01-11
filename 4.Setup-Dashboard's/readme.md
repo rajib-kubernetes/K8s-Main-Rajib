@@ -4,6 +4,8 @@
 ### EFK stack(lasticsearch, FluentBit & Kibana)-
 ### WeaveScope-
 
+https://www.weave.works/docs/scope/latest/installing/#orchestrators
+
 ```
 kubectl apply -f "https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl version | base64 | tr -d '\n')" --dry-run
 kubectl apply -f "https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl version | base64 | tr -d '\n')"
@@ -44,9 +46,14 @@ kubectl create -f 2.WeaveScope-IngressRoute.ymal
 
 weave.example.com
 
+kubectl -n weave get svc
+
+
 
 ```
 ### K9sTerminalDashboard-
+
+
 ### Kontena Lens 
 ### Kail - Easy tool to view logs 
 

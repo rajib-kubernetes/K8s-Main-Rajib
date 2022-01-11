@@ -7,6 +7,8 @@
 
 https://k8slens.dev/index.html
 
+Dolwonlode k8slens and use it 
+
 
 
 ### WeaveScope-

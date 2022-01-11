@@ -1,7 +1,12 @@
 ### Rancher-
 ### Dashboard-UI- 
 ### Pometheus&Grafana- 
-### EFK stack(Elasticsearch, FluentBit & Kibana)-
+
+
+### k8s lens  
+
+https://k8slens.dev/index.html
+
 
 
 ### WeaveScope-
@@ -86,7 +91,8 @@ k9s
 
 ```
 
-### k8s lens  
+
+### EFK stack(Elasticsearch, FluentBit & Kibana)-
 
 ### Kail - Easy tool to view logs 
 

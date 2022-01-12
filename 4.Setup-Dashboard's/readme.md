@@ -1,14 +1,14 @@
 
-### Deploying metrics server
+### 1.Deploying metrics server
 
 
 
-### Rancher-
-### Dashboard-UI- 
-### Pometheus&Grafana- 
+### 2.Rancher-
+### 3.Dashboard-UI- 
+### 4.Pometheus&Grafana- 
 
 
-### k8s lens  
+### 5.k8s lens  
 
 https://k8slens.dev/index.html
 
@@ -16,7 +16,7 @@ Dolwonlode k8slens and use it
 
 
 
-### WeaveScope-
+### 6.WeaveScope-
 
 https://www.weave.works/docs/scope/latest/installing/#orchestrators
 
@@ -67,7 +67,7 @@ kubectl -n weave get svc
 
 
 ```
-### K9sTerminalDashboard-
+### 7.K9sTerminalDashboard-
 
 ```
 kubectl version --short
@@ -99,9 +99,9 @@ k9s
 ```
 
 
-### EFK stack(Elasticsearch, FluentBit & Kibana)-
+### 8.EFK stack(Elasticsearch, FluentBit & Kibana)-
 
-### Kail - Easy tool to view logs 
+### 9.Kail - Easy tool to view logs 
 
 
 

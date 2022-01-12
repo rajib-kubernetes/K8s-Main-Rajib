@@ -1,6 +1,19 @@
 
 ### 1.Deploying metrics server
 
+kubectl top no
+kubectl top pods
+
+### not working yet
+helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+helm search repo metrics-server
+helm show values metrics-server/metrics-server > /home/rajib/metrics-server.values yaml
+
+kubectl create ns metrics-server
+helm install  metrics-server metrics-server/metrics-server --namespace metrics-server --values /home/rajib/metrics-server.values
+
+
+
 
 
 ### 2.Rancher-

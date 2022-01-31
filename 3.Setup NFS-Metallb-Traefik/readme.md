@@ -236,12 +236,14 @@ spec:
 ## 6.Setup traefik dashboard with basic-auth (dashboard , Middleware(basic-auth),htpasswd )
 ### 
 
+```
 kubectl create -f /home/rajib/1.traefik-db.yaml
 kubectl delete -f /home/rajib/1.traefik-db.yaml
 
 kubectl -n traefik get all
 kubectl -n traefik get pod
 
+```
 
 ```
 # dashboard.yaml
